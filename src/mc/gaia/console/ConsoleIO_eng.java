@@ -8,15 +8,17 @@ import mc.gaia.search.description.SearchDescription;
 public class ConsoleIO_eng implements IConsoleIO {
 	
 	public void DisplayStartup() {
-		Logger.info("MC-Gaia Startup.");
+		Logger.info("Welcome to MC-Gaia.");
 		Logger.info("MC-Gaia searches for a seed given a search descriptions.");
-		Logger.info("Enter 'q' at any time to quit.");
-		Logger.info("Searching...");
-		System.out.println();
 	}
 	
 	public void DisplaySearchDescription(SearchDescription curdescription) {
 		//TODO
+	}
+	
+	public void DisplayBeginSearchMessage() {
+		Logger.info("Enter 'q' at any time to quit.");
+		Logger.info("Searching...");
 	}
 	
 	public boolean CheckIfUserTerminated() {

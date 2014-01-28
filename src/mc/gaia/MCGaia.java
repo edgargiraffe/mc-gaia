@@ -10,9 +10,7 @@ import mc.gaia.console.IConsoleIO;
 import mc.gaia.exception.AException;
 import mc.gaia.logging.Logger;
 import mc.gaia.search.SearchBuilder;
-import mc.gaia.search.description.RegionDescription;
 import mc.gaia.search.description.SearchDescription;
-import mc.gaia.search.result.RegionResults;
 import mc.gaia.search.result.SearchResults;
 
 public class MCGaia {
@@ -21,6 +19,7 @@ public class MCGaia {
 	final static String DEFAULT_LOCALIZATION = "eng";
 
 	public static void main(String[] args) throws Exception {
+		
 		//declarations we know will not fail
 		IConsoleIO localization = ConsoleIOFactory.GetIOForLocalization(DEFAULT_LOCALIZATION);
 		
@@ -28,7 +27,7 @@ public class MCGaia {
 			Random random = new Random();
 			Date starttime = new Date();
 			long elapsedms = 0;
-			boolean successful = false; //initially, we haven't found any seed
+			boolean successful = false; // initially, we haven't found any seed
 			boolean userexited = false;
 
 			//attempt to get the configuration
@@ -48,11 +47,19 @@ public class MCGaia {
 				localization.DisplayUnknownLocalizationMessage();
 			}
 			
-			SearchDescription searchDescription = SearchBuilder.create("dev-search.json");
-			AmidstInterface.initialize(searchDescription.minecraftVersion);
-			
 			localization.DisplayStartup();
 			
+			if(args.length == 0) {
+				Logger.error("Please input the search description configuration file as a command line argument.");
+				return;
+			}
+			
+			SearchDescription searchDescription = SearchBuilder.create(args[0]);
+			AmidstInterface.initialize(searchDescription.minecraftVersion);
+			
+			localization.DisplayBeginSearchMessage();
+			
+			int numSeedsTried = 0;
 			while(!userexited && !successful) {
 				
 				long seed = random.nextLong();
@@ -69,8 +76,10 @@ public class MCGaia {
 				
 				//if we were successful, print out the seed
 				if(successful) {
-					System.out.println(seed);
+					Logger.result("Seed = \"" + seed + "\".");
 				}
+				
+				numSeedsTried++;
 				
 				//update time elapsed
 				elapsedms = new Date().getTime() - starttime.getTime();
@@ -79,6 +88,9 @@ public class MCGaia {
 					throw new TimeoutException();
 				}
 			}
+			
+			Logger.info("Number of seeds tried = " + numSeedsTried);
+			
 		}
 		catch (AException e) {
 			Logger.error(e.getMessage());

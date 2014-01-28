@@ -18,6 +18,10 @@ public class RegionValidator {
 	}
 	
 	public boolean isValid() {
+		if(this.region == null) {
+			Logger.error("Region is null. Do you have an extra comma somewhere?");
+			return false;
+		}
 		
 		greaterThanZero(region.maxBlocks, "maxBlocks");
 		greaterThanZero(region.minBlocks, "minBlocks");
@@ -61,6 +65,9 @@ public class RegionValidator {
 	}
 	
 	private void minBlocksLessThanMaxBlocks() {
+		if(this.region.maxBlocks == RegionDescription.UNSET)
+			return;
+		
 		if(this.region.minBlocks > this.region.maxBlocks) {
 			this.valid = false;
 			Logger.error("A region's \"minBlocks\" must be less than or equal to it's \"maxBlocks\".");

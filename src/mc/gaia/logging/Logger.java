@@ -10,6 +10,7 @@ public class Logger {
 	private static final String ERROR = "ERROR: ";
 	private static final String WARNING = "WARNING: ";
 	private static final String INFO = "INFO: ";
+	private static final String RESULT = "RESULT: ";
 	
 	private static final PrintStream consoleStdOut = System.out;
 	private static final PrintStream consoleStdErr = System.err;
@@ -35,6 +36,10 @@ public class Logger {
 	
 	public static void info(String message) {
 		log(INFO + message);
+	}
+	
+	public static void result(String message) {
+		log(RESULT + message);
 	}
 	
 	public static void disableConsole() {

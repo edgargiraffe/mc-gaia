@@ -7,6 +7,7 @@ public interface IConsoleIO {
 	void DisplayUnknownLocalizationMessage();
 	void DisplayStartup();
 	void DisplaySearchDescription(SearchDescription curdesc);
+	void DisplayBeginSearchMessage();
 	boolean CheckIfUserTerminated();
 	void DisplayTimeoutMessage();
 	void DisplayShutdown();
