@@ -1,0 +1,14 @@
+{
+  "minecraftVersion": "1.7.2",
+  "worldType": "default",
+
+  "minX": -512,
+  "maxX": 512,
+  "minY": -512,
+  "maxY": 512,
+  
+  "regions": [
+    { "biomes": ["Mesa"] }
+  ]
+}
+

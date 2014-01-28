@@ -1,0 +1,32 @@
+{ 
+  "worldType" : "default",
+  "minecraftVersion" : "1.7.2",
+  
+  "minX" : -2048,
+  "minY" : -2048,
+  "maxX" : 2048,
+  "maxY" : 2048,
+
+  "regions" : [ 
+  	  { "biomes" : [ "Ocean", "Ocean M", "Deep Ocean", "Deep Ocean M" ] },
+  	  { "biomes" : [ "Plains" ] },
+  	  { "biomes" : [ "Desert", "Desert Hills", "Desert M", "Desert Hills M" ] },
+  	  { "biomes" : [ "Extreme Hills", "Extreme Hills Edge", "Extreme Hills+", "Extreme Hills M", "Extreme Hills Edge M", "Extreme Hills+ M" ] },
+  	  { "biomes" : [ "Forest", "Forest Hills", "Forest Hills M" ] },
+  	  { "biomes" : [ "Taiga", "Taiga Hills", "Taiga M", "Taiga Hills M" ] },
+  	  { "biomes" : [ "Swampland", "Swampland M" ] },
+      { "biomes" : [ "Ice Plains" ] },
+      { "biomes" : [ "Ice Mountains", "Ice Mountains M" ] },
+      { "biomes" : [ "Mushroom Island", "Mushroom Island M", "Mushroom Island Shore", "Mushroom Island Shore M" ] },
+      { "biomes" : [ "Jungle", "Jungle Hills", "Jungle Edge", "Jungle M", "Jungle Hills M", "Jungle Edge M" ] },
+      { "biomes" : [ "Birch Forest", "Birch Forest Hills", "Birch Forest M", "Birch Forest Hills M" ] },
+      { "biomes" : [ "Roofed Forest", "Roofed Forest M" ] },
+      { "biomes" : [ "Cold Taiga", "Cold Taiga Hills", "Cold Taiga M", "Cold Taiga Hills M" ] },
+      { "biomes" : [ "Mega Taiga", "Mega Taiga Hills", "Mega Spruce Taiga", "Mega Spruce Taiga (Hills)" ] },
+      { "biomes" : [ "Savanna", "Savanna Plateau", "Savanna M", "Savanna Plateau M" ] },
+      { "biomes" : [ "Mesa", "Mesa Plateau F", "Mesa Plateau", "Mesa (Bryce)", "Mesa Plateau M", "Mesa Plateau F M" ] },
+      { "biomes" : [ "Sunflower Plains" ] },
+      { "biomes" : [ "Flower Forest" ] },
+      { "biomes" : [ "Ice Plains Spikes" ] }
+    ]
+}
