@@ -19,6 +19,8 @@ public class RegionSetValidator {
 	public RegionSetValidator(SearchDescription searchDescription) {
 		this.valid = true;
 		this.searchDescription = searchDescription;
+		if(searchDescription == null)
+			return;
 		
 		this.totalArea = searchDescription.getSearchArea();
 
@@ -32,8 +34,11 @@ public class RegionSetValidator {
 	}
 	
 	public boolean isValid() {
+		if(searchDescription == null) 
+			return false;
+		
 		if(searchDescription.regions == null)
-			return valid;
+			return false;
 		
 		// Loop over every region description.
 		for(RegionDescription region : searchDescription.regions) {

@@ -31,6 +31,25 @@ public class SearchDescription {
 		regions = null;
 	}
 	
+	public SearchDescription(
+			String worldType,
+			String minecraftVersion,
+			String spawn,
+			int minX,
+			int minY,
+			int maxX,
+			int maxY,
+			RegionDescription[] regions) {
+		this.worldType = worldType;
+		this.minecraftVersion = minecraftVersion;
+		this.spawn = spawn;
+		this.minX = minX;
+		this.minY = minY;
+		this.maxX = maxX;
+		this.maxY = maxY;
+		this.regions = regions;
+	}
+	
 	public int getSearchArea() {
 		return (maxX - minX) * (maxY - minY);
 	}
