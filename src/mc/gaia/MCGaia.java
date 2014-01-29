@@ -79,7 +79,7 @@ public class MCGaia {
 				if(successful) {
 					System.out.println("");
 					Logger.result("Seed = \"" + seed + "\".");
-					BiomeResults.printSortedBiomeResults(results.regionResults.biomeBlockCountMap);
+					BiomeResults.printSortedBiomeResults(results.regionResults.biomeBlockCountMap, searchDescription.getSearchArea());
 					System.out.println("");
 				}
 				
