@@ -10,12 +10,25 @@ public class RegionDescription {
 	public final float maxPercent;
 	public final float minPercent;
 	
-	private RegionDescription() {
+	public RegionDescription() {
 		biomes = null;
 		maxBlocks = UNSET;
 		minBlocks = UNSET;
 		maxPercent = UNSET;
 		minPercent = UNSET;
+	}
+	
+	public RegionDescription(
+			String[] biomes, 
+			int maxBlocks, 
+			int minBlocks, 
+			float maxPercent, 
+			float minPercent) {
+		this.biomes = biomes;
+		this.maxBlocks = maxBlocks;
+		this.minBlocks = minBlocks;
+		this.maxPercent = maxPercent;
+		this.minPercent = minPercent;
 	}
 	
 }

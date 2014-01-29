@@ -13,7 +13,7 @@ public class RegionSetValidator {
 	private SearchDescription searchDescription;
 	private int totalArea;
 	private int totalMinBlocks;
-	private int totalMinPercent;
+	private float totalMinPercent;
 	private HashMap<String, Integer> numberOfTimesBiomeListed;
 	
 	public RegionSetValidator(SearchDescription searchDescription) {

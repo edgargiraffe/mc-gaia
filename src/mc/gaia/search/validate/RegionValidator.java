@@ -39,8 +39,10 @@ public class RegionValidator {
 		
 		hasAtLeastOneBiome();
 		
-		for(String biome : this.region.biomes) 
-			isValidBiome(biome);
+		if(this.region.biomes != null) {
+			for(String biome : this.region.biomes) 
+				isValidBiome(biome);
+		}
 		
 		return valid;
 	}
@@ -54,7 +56,7 @@ public class RegionValidator {
 	}
 
 	private void hasAtLeastOneBiome() {
-		if(this.region.biomes.length == 0) {
+		if(this.region.biomes == null || this.region.biomes.length == 0) {
 			this.valid = false;
 			Logger.error("Each region must have at least one biome.");
 		}
