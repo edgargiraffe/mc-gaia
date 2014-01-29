@@ -30,5 +30,9 @@ public class SearchDescription {
 		maxY = UNSET;
 		regions = null;
 	}
+	
+	public int getSearchArea() {
+		return (maxX - minX) * (maxY - minY);
+	}
 
 }

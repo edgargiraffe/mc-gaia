@@ -60,6 +60,11 @@ public class SearchResults {
 			
 			this.maxBlocks = region.maxBlocks;
 			this.minBlocks = region.minBlocks;
+			int multiplier = this.searchDescription.getSearchArea() / 100;
+			if(region.maxPercent != RegionDescription.UNSET)
+				this.maxBlocks = (int) region.maxPercent * multiplier;
+			if(region.minPercent != RegionDescription.UNSET)
+				this.minBlocks = (int) region.minPercent * multiplier;
 			
 			Integer count = regionResults.regionBlockCountMap.get(region);
 			

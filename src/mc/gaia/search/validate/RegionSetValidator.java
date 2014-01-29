@@ -20,9 +20,8 @@ public class RegionSetValidator {
 		this.valid = true;
 		this.searchDescription = searchDescription;
 		
-		this.totalArea = (searchDescription.maxX - searchDescription.minX);
-		this.totalArea *= (searchDescription.maxY - searchDescription.minY);
-		
+		this.totalArea = searchDescription.getSearchArea();
+
 		totalMinBlocks = 0;
 		totalMinPercent = 0;
 		

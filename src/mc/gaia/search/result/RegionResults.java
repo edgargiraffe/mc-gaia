@@ -60,12 +60,12 @@ public class RegionResults {
 			String biomeName = AmidstInterface.getBiomeName(biomeIndex);
 	
 			Integer biomeCount = biomeBlockCountMap.get(biomeName);
-			biomeBlockCountMap.put(biomeName, new Integer(biomeCount + 4));
+			biomeBlockCountMap.put(biomeName, new Integer(biomeCount + 16));
 			
 			if(regionDescriptionMap.containsKey(biomeName)) {
 				RegionDescription region = regionDescriptionMap.get(biomeName);
 				Integer count = regionBlockCountMap.get(region);
-				regionBlockCountMap.put(region, new Integer(count + 4));
+				regionBlockCountMap.put(region, new Integer(count + 16));
 			}
 		}
 	
