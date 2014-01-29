@@ -27,6 +27,7 @@ public class SearchValidator {
     // displayed
     public boolean isValid() {
         if(this.searchDescription == null) {
+            Logger.error("Need to specify a search description.");
             return false;
         }
 
