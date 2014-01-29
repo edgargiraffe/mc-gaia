@@ -5,16 +5,15 @@ import mc.gaia.logging.Logger;
 import mc.gaia.search.description.RegionDescription;
 
 public class RegionValidator {
-
-	private static final int MAX_COORD = 2048;
-	private static final int MAX_AREA = MAX_COORD * MAX_COORD;
 	
 	private boolean valid;
 	private RegionDescription region;
+	private final int totalArea;
 	
-	public RegionValidator(RegionDescription region) {
+	public RegionValidator(RegionDescription region, int totalArea) {
 		this.valid = true;
 		this.region = region;
+		this.totalArea = totalArea;
 	}
 	
 	public boolean isValid() {
@@ -23,10 +22,20 @@ public class RegionValidator {
 			return false;
 		}
 		
+		blocksAndPercentBothSet(region.minBlocks, region.minPercent, "min");
+		blocksAndPercentBothSet(region.maxBlocks, region.maxPercent, "max");
+		
 		greaterThanZero(region.maxBlocks, "maxBlocks");
 		greaterThanZero(region.minBlocks, "minBlocks");
-		maxBlocksLessThanMaxArea();
-		minBlocksLessThanMaxBlocks();
+		
+		greaterThanZero(region.maxPercent, "maxPercent");
+		greaterThanZero(region.minPercent, "minPercent");
+		lessThanOneHundred(region.maxPercent, "maxPercent");
+		lessThanOneHundred(region.minPercent, "minPercent");
+		
+		minBlocksLessThanMaxArea();
+		minLessThanMax(region.minBlocks, region.maxBlocks, "Blocks");
+		minLessThanMax(region.minPercent, region.maxPercent, "Percent");
 		
 		hasAtLeastOneBiome();
 		
@@ -36,6 +45,14 @@ public class RegionValidator {
 		return valid;
 	}
 	
+	private void blocksAndPercentBothSet(int blocks, float percent, String name) {
+		if(blocks != RegionDescription.UNSET && percent != RegionDescription.UNSET) {
+			this.valid = false;
+			Logger.error(String.format("Variables \"%sBlocks\" and \"%sPercent\" cannot both be set.", name, name));
+		}
+		
+	}
+
 	private void hasAtLeastOneBiome() {
 		if(this.region.biomes.length == 0) {
 			this.valid = false;
@@ -50,27 +67,34 @@ public class RegionValidator {
 		}
 	}
 	
-	private void greaterThanZero(int area, String name) {
+	private void greaterThanZero(float area, String name) {
 		if(area < RegionDescription.UNSET) {
 			this.valid = false;
 			Logger.error("Variable \"" + name + "\" must be greater than or equal to zero.");
 		}
 	}
 	
-	private void maxBlocksLessThanMaxArea() {
-		if(this.region.maxBlocks > MAX_AREA) {
+	private void lessThanOneHundred(float percentArea, String name) {
+		if(percentArea > 100) {
 			this.valid = false;
-			Logger.error("Variable \"maxBlocks\" must be less than or equal to the maximum allowed area \"" + MAX_AREA + "m3\".");
+			Logger.error(String.format("Variable \"%s\" cannot be greater than 100", name) + "%.");
 		}
 	}
 	
-	private void minBlocksLessThanMaxBlocks() {
-		if(this.region.maxBlocks == RegionDescription.UNSET)
+	private void minBlocksLessThanMaxArea() {
+		if(this.region.minBlocks > this.totalArea) {
+			this.valid = false;
+			Logger.error("Variable \"minBlocks\" must be less than or equal to the total searched area \"" + this.totalArea + "m3\".");
+		}
+	}
+	
+	private void minLessThanMax(float min, float max, String name) {
+		if(max == RegionDescription.UNSET)
 			return;
 		
-		if(this.region.minBlocks > this.region.maxBlocks) {
+		if(min > max) {
 			this.valid = false;
-			Logger.error("A region's \"minBlocks\" must be less than or equal to it's \"maxBlocks\".");
+			Logger.error(String.format("A region's \"min%s\" must be less than or equal to it's \"max%s\".", name, name));
 		}
 	}
 	

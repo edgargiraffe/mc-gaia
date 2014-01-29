@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import mc.gaia.amidst.AmidstInterface;
 import mc.gaia.logging.Logger;
-import mc.gaia.search.description.RegionDescription;
 import mc.gaia.search.description.SearchDescription;
 
 public class SearchValidator {
@@ -39,12 +38,8 @@ public class SearchValidator {
 		maxXGreaterThanMinX();
 		maxYGreaterThanMinY();
 		
-		// TODO: refactor - do we need a region validator???
-		if(searchDescription.regions != null) {
-			for(RegionDescription region : searchDescription.regions) {
-				if((new RegionValidator(region)).isValid() == false) 
-					valid = false;
-			}	
+		if((new RegionSetValidator(this.searchDescription)).isValid() == false) {
+			valid = false;
 		}
 		
 		return valid;
