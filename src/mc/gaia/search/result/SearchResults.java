@@ -9,7 +9,7 @@ import mc.gaia.search.description.SearchDescription;
 public class SearchResults {
 	
 	private SearchDescription searchDescription;
-	private RegionResults regionResults;
+	public RegionResults regionResults;
 	private boolean successful;
 	
 	private int maxBlocks;

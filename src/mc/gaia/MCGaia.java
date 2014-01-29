@@ -11,6 +11,7 @@ import mc.gaia.exception.AException;
 import mc.gaia.logging.Logger;
 import mc.gaia.search.SearchBuilder;
 import mc.gaia.search.description.SearchDescription;
+import mc.gaia.search.result.BiomeResults;
 import mc.gaia.search.result.SearchResults;
 
 public class MCGaia {
@@ -76,7 +77,10 @@ public class MCGaia {
 				
 				//if we were successful, print out the seed
 				if(successful) {
+					System.out.println("");
 					Logger.result("Seed = \"" + seed + "\".");
+					BiomeResults.printSortedBiomeResults(results.regionResults.biomeBlockCountMap);
+					System.out.println("");
 				}
 				
 				numSeedsTried++;
@@ -85,6 +89,7 @@ public class MCGaia {
 				elapsedms = new Date().getTime() - starttime.getTime();
 				userexited = localization.CheckIfUserTerminated();
 				if(elapsedms > currentconfig.SearchTimeout) {
+					Logger.info("Number of seeds tried = " + numSeedsTried);
 					throw new TimeoutException();
 				}
 			}
