@@ -10,7 +10,6 @@ import org.junit.Test;
 
 public class RegionSetValidatorTest {
 
-    public static final int UNSET = RegionDescription.UNSET;
     public static final int MIN_X = 0;
     public static final int MIN_Y = 0;
     public static final int MAX_X = 512;
@@ -69,20 +68,20 @@ public class RegionSetValidatorTest {
     public final SearchDescription searchWithTwoRegionsWithMinPercentGreaterThanTestArea;
 
     public RegionSetValidatorTest() {
-        this.regionWithOneFirstBiome = new RegionDescription(ONE_FIRST_BIOME, UNSET, UNSET, UNSET, UNSET);
-        this.regionWithOneSecondBiome = new RegionDescription(ONE_SECOND_BIOME, UNSET, UNSET, UNSET, UNSET);
-        this.regionWithTwoDifferentBiomes = new RegionDescription(TWO_DIFFERENT_BIOMES, UNSET, UNSET, UNSET, UNSET);
-        this.regionWithTwoDuplicateBiomes = new RegionDescription(TWO_DUPLICATE_BIOMES, UNSET, UNSET, UNSET, UNSET);
+        this.regionWithOneFirstBiome = new RegionDescription(ONE_FIRST_BIOME, null, null, null, null);
+        this.regionWithOneSecondBiome = new RegionDescription(ONE_SECOND_BIOME, null, null, null, null);
+        this.regionWithTwoDifferentBiomes = new RegionDescription(TWO_DIFFERENT_BIOMES, null, null, null, null);
+        this.regionWithTwoDuplicateBiomes = new RegionDescription(TWO_DUPLICATE_BIOMES, null, null, null, null);
 
-        this.regionWithLessThanHalfMinBlocks = new RegionDescription(ONE_FIRST_BIOME, UNSET, TEST_AREA / 2 - 1, UNSET, UNSET);
-        this.regionWithHalfMinBlocks = new RegionDescription(ONE_FIRST_BIOME, UNSET, TEST_AREA / 2, UNSET, UNSET);
-        this.regionWithHalfMinBlocksAndSecondBiome = new RegionDescription(ONE_SECOND_BIOME, UNSET, TEST_AREA / 2, UNSET, UNSET);
-        this.regionWithMoreThanHalfMinBlocks = new RegionDescription(ONE_FIRST_BIOME, UNSET, TEST_AREA / 2 + 1, UNSET, UNSET);
+        this.regionWithLessThanHalfMinBlocks = new RegionDescription(ONE_FIRST_BIOME, null, TEST_AREA / 2 - 1, null, null);
+        this.regionWithHalfMinBlocks = new RegionDescription(ONE_FIRST_BIOME, null, TEST_AREA / 2, null, null);
+        this.regionWithHalfMinBlocksAndSecondBiome = new RegionDescription(ONE_SECOND_BIOME, null, TEST_AREA / 2, null, null);
+        this.regionWithMoreThanHalfMinBlocks = new RegionDescription(ONE_FIRST_BIOME, null, TEST_AREA / 2 + 1, null, null);
 
-        this.regionWithLessThanHalfMinPercent = new RegionDescription(ONE_FIRST_BIOME, UNSET, UNSET, UNSET, LESS_THAN_HALF_PERCENT);
-        this.regionWithHalfMinPercent = new RegionDescription(ONE_FIRST_BIOME, UNSET, UNSET, UNSET, HALF_PERCENT);
-        this.regionWithHalfMinPercentAndSecondBiome = new RegionDescription(ONE_SECOND_BIOME, UNSET, UNSET, UNSET, HALF_PERCENT);
-        this.regionWithMoreThanHalfMinPercent = new RegionDescription(ONE_FIRST_BIOME, UNSET, UNSET, UNSET, MORE_THAN_HALF_PERCENT);
+        this.regionWithLessThanHalfMinPercent = new RegionDescription(ONE_FIRST_BIOME, null, null, null, LESS_THAN_HALF_PERCENT);
+        this.regionWithHalfMinPercent = new RegionDescription(ONE_FIRST_BIOME, null, null, null, HALF_PERCENT);
+        this.regionWithHalfMinPercentAndSecondBiome = new RegionDescription(ONE_SECOND_BIOME, null, null, null, HALF_PERCENT);
+        this.regionWithMoreThanHalfMinPercent = new RegionDescription(ONE_FIRST_BIOME, null, null, null, MORE_THAN_HALF_PERCENT);
 
         final RegionDescription[] oneRegionWithDifferentBiomes = { this.regionWithTwoDifferentBiomes };
         final RegionDescription[] oneRegionWithDuplicateBiomes = { this.regionWithTwoDuplicateBiomes };

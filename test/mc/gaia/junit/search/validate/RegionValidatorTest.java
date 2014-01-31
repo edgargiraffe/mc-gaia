@@ -9,7 +9,6 @@ import org.junit.Test;
 
 public class RegionValidatorTest {
 
-    public static final int UNSET = RegionDescription.UNSET;
     public static final int TEST_AREA = 512 * 512;
 
     public static final String VALID_BIOME = "Ocean";
@@ -69,50 +68,50 @@ public class RegionValidatorTest {
     public RegionValidatorTest() {
         this.nullRegion = null;
         this.emptyRegion = new RegionDescription();
-        this.regionWithNoBiomes = new RegionDescription(new String[0], UNSET, UNSET, UNSET, UNSET);
+        this.regionWithNoBiomes = new RegionDescription(new String[0], null, null, null, null);
 
         final String[] oneBiome = { VALID_BIOME };
-        this.regionWithOneBiome = new RegionDescription(oneBiome, UNSET, UNSET, UNSET, UNSET);
+        this.regionWithOneBiome = new RegionDescription(oneBiome, null, null, null, null);
 
         final String[] invalidBiome = { INVALID_BIOME };
-        this.regionWithInvalidBiome = new RegionDescription(invalidBiome, UNSET, UNSET, UNSET, UNSET);
+        this.regionWithInvalidBiome = new RegionDescription(invalidBiome, null, null, null, null);
 
-        this.regionWithNegativeMinBlocks = new RegionDescription(oneBiome, UNSET, NEGATIVE_NUMBER, UNSET, UNSET);
+        this.regionWithNegativeMinBlocks = new RegionDescription(oneBiome, null, NEGATIVE_NUMBER, null, null);
 
-        this.regionWithNegativeMaxBlocks = new RegionDescription(oneBiome, NEGATIVE_NUMBER, UNSET, UNSET, UNSET);
-        this.regionWithNegativeMinPercent = new RegionDescription(oneBiome, UNSET, UNSET, UNSET, NEGATIVE_NUMBER);
-        this.regionWithNegativeMaxPercent = new RegionDescription(oneBiome, UNSET, UNSET, NEGATIVE_NUMBER, UNSET);
+        this.regionWithNegativeMaxBlocks = new RegionDescription(oneBiome, NEGATIVE_NUMBER, null, null, null);
+        this.regionWithNegativeMinPercent = new RegionDescription(oneBiome, null, null, null, (float) NEGATIVE_NUMBER);
+        this.regionWithNegativeMaxPercent = new RegionDescription(oneBiome, null, null, (float) NEGATIVE_NUMBER, null);
 
-        this.regionWithZeroMinBlocks = new RegionDescription(oneBiome, UNSET, ZERO, UNSET, UNSET);
-        this.regionWithZeroMaxBlocks = new RegionDescription(oneBiome, ZERO, UNSET, UNSET, UNSET);
-        this.regionWithZeroMinPercent = new RegionDescription(oneBiome, UNSET, UNSET, UNSET, ZERO);
-        this.regionWithZeroMaxPercent = new RegionDescription(oneBiome, UNSET, UNSET, ZERO, UNSET);
+        this.regionWithZeroMinBlocks = new RegionDescription(oneBiome, null, ZERO, null, null);
+        this.regionWithZeroMaxBlocks = new RegionDescription(oneBiome, ZERO, null, null, null);
+        this.regionWithZeroMinPercent = new RegionDescription(oneBiome, null, null, null, (float) ZERO);
+        this.regionWithZeroMaxPercent = new RegionDescription(oneBiome, null, null, (float) ZERO, null);
 
-        this.regionWithPositiveMinBlocks = new RegionDescription(oneBiome, UNSET, POSITIVE_NUMBER, UNSET, UNSET);
-        this.regionWithPositiveMaxBlocks = new RegionDescription(oneBiome, POSITIVE_NUMBER, UNSET, UNSET, UNSET);
-        this.regionWithPositiveMinPercent = new RegionDescription(oneBiome, UNSET, UNSET, UNSET, POSITIVE_NUMBER);
-        this.regionWithPositiveMaxPercent = new RegionDescription(oneBiome, UNSET, UNSET, POSITIVE_NUMBER, UNSET);
+        this.regionWithPositiveMinBlocks = new RegionDescription(oneBiome, null, POSITIVE_NUMBER, null, null);
+        this.regionWithPositiveMaxBlocks = new RegionDescription(oneBiome, POSITIVE_NUMBER, null, null, null);
+        this.regionWithPositiveMinPercent = new RegionDescription(oneBiome, null, null, null, (float) POSITIVE_NUMBER);
+        this.regionWithPositiveMaxPercent = new RegionDescription(oneBiome, null, null, (float) POSITIVE_NUMBER, null);
 
-        this.regionWithMinBlockAndPercentSet = new RegionDescription(oneBiome, UNSET, POSITIVE_NUMBER, UNSET, POSITIVE_NUMBER);
-        this.regionWithMaxBlockAndPercentSet = new RegionDescription(oneBiome, POSITIVE_NUMBER, UNSET, POSITIVE_NUMBER, UNSET);
+        this.regionWithMinBlockAndPercentSet = new RegionDescription(oneBiome, null, POSITIVE_NUMBER, null, (float) POSITIVE_NUMBER);
+        this.regionWithMaxBlockAndPercentSet = new RegionDescription(oneBiome, POSITIVE_NUMBER, null, (float) POSITIVE_NUMBER, null);
 
-        this.regionWithValidMinPercent = new RegionDescription(oneBiome, UNSET, UNSET, UNSET, VALID_PERCENT);
-        this.regionWithValidMaxPercent = new RegionDescription(oneBiome, UNSET, UNSET, VALID_PERCENT, UNSET);
-        this.regionWithBorderValidMinPercent = new RegionDescription(oneBiome, UNSET, UNSET, UNSET, BORDER_VALID_PERCENT);
-        this.regionWithBorderValidMaxPercent = new RegionDescription(oneBiome, UNSET, UNSET, BORDER_VALID_PERCENT, UNSET);
-        this.regionWithInvalidMinPercent = new RegionDescription(oneBiome, UNSET, UNSET, UNSET, INVALID_PERCENT);
-        this.regionWithInvalidMaxPercent = new RegionDescription(oneBiome, UNSET, UNSET, INVALID_PERCENT, UNSET);
+        this.regionWithValidMinPercent = new RegionDescription(oneBiome, null, null, null, VALID_PERCENT);
+        this.regionWithValidMaxPercent = new RegionDescription(oneBiome, null, null, VALID_PERCENT, null);
+        this.regionWithBorderValidMinPercent = new RegionDescription(oneBiome, null, null, null, BORDER_VALID_PERCENT);
+        this.regionWithBorderValidMaxPercent = new RegionDescription(oneBiome, null, null, BORDER_VALID_PERCENT, null);
+        this.regionWithInvalidMinPercent = new RegionDescription(oneBiome, null, null, null, INVALID_PERCENT);
+        this.regionWithInvalidMaxPercent = new RegionDescription(oneBiome, null, null, INVALID_PERCENT, null);
 
-        this.regionWithMinBlocksLessThanArea = new RegionDescription(oneBiome, UNSET, TEST_AREA - 1, UNSET, UNSET);
-        this.regionWithMinBlocksEqualToArea = new RegionDescription(oneBiome, UNSET, TEST_AREA, UNSET, UNSET);
-        this.regionWithMinBlocksGreaterThanArea = new RegionDescription(oneBiome, UNSET, TEST_AREA + 1, UNSET, UNSET);
+        this.regionWithMinBlocksLessThanArea = new RegionDescription(oneBiome, null, TEST_AREA - 1, null, null);
+        this.regionWithMinBlocksEqualToArea = new RegionDescription(oneBiome, null, TEST_AREA, null, null);
+        this.regionWithMinBlocksGreaterThanArea = new RegionDescription(oneBiome, null, TEST_AREA + 1, null, null);
 
-        this.regionWithMinLessThanMaxBlocks = new RegionDescription(oneBiome, LARGER_POSITIVE_NUMBER, POSITIVE_NUMBER, UNSET, UNSET);
-        this.regionWithMinLessThanMaxPercent = new RegionDescription(oneBiome, UNSET, UNSET, LARGER_POSITIVE_NUMBER, POSITIVE_NUMBER);
-        this.regionWithMinEqualToMaxBlocks = new RegionDescription(oneBiome, POSITIVE_NUMBER, POSITIVE_NUMBER, UNSET, UNSET);
-        this.regionWithMinEqualToMaxPercent = new RegionDescription(oneBiome, UNSET, UNSET, POSITIVE_NUMBER, POSITIVE_NUMBER);
-        this.regionWithMinGreaterThanMaxBlocks = new RegionDescription(oneBiome, POSITIVE_NUMBER, LARGER_POSITIVE_NUMBER, UNSET, UNSET);
-        this.regionWithMinGreaterThanMaxPercent = new RegionDescription(oneBiome, UNSET, UNSET, POSITIVE_NUMBER, LARGER_POSITIVE_NUMBER);
+        this.regionWithMinLessThanMaxBlocks = new RegionDescription(oneBiome, LARGER_POSITIVE_NUMBER, POSITIVE_NUMBER, null, null);
+        this.regionWithMinLessThanMaxPercent = new RegionDescription(oneBiome, null, null, (float) LARGER_POSITIVE_NUMBER, (float) POSITIVE_NUMBER);
+        this.regionWithMinEqualToMaxBlocks = new RegionDescription(oneBiome, POSITIVE_NUMBER, POSITIVE_NUMBER, null, null);
+        this.regionWithMinEqualToMaxPercent = new RegionDescription(oneBiome, null, null, (float) POSITIVE_NUMBER, (float) POSITIVE_NUMBER);
+        this.regionWithMinGreaterThanMaxBlocks = new RegionDescription(oneBiome, POSITIVE_NUMBER, LARGER_POSITIVE_NUMBER, null, null);
+        this.regionWithMinGreaterThanMaxPercent = new RegionDescription(oneBiome, null, null, (float) POSITIVE_NUMBER, (float) LARGER_POSITIVE_NUMBER);
     }
 
     public boolean isValid(final RegionDescription region) {
@@ -148,7 +147,7 @@ public class RegionValidatorTest {
         assertFalse(isValid(this.regionWithNegativeMinPercent));
         assertFalse(isValid(this.regionWithNegativeMaxPercent));
 
-        // All min/max block/percent are UNSET.
+        // All min/max block/percent are null.
         assertTrue(isValid(this.regionWithOneBiome));
 
         // Test each min/max block/percent individually as zero.

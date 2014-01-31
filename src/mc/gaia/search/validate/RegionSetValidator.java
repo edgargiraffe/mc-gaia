@@ -11,7 +11,7 @@ public class RegionSetValidator {
 
     private boolean valid;
     private SearchDescription searchDescription;
-    private int totalArea;
+    private Integer searchArea;
     private int totalMinBlocks;
     private float totalMinPercent;
     private HashMap<String, Integer> numberOfTimesBiomeListed;
@@ -23,7 +23,7 @@ public class RegionSetValidator {
             return;
         }
 
-        this.totalArea = searchDescription.getSearchArea();
+        this.searchArea = searchDescription.getSearchArea();
 
         this.totalMinBlocks = 0;
         this.totalMinPercent = 0;
@@ -49,11 +49,11 @@ public class RegionSetValidator {
         for(final RegionDescription region : this.searchDescription.regions) {
 
             // Calculate variables used to check validity of set of regions.
-            if(region.minBlocks != RegionDescription.UNSET) {
+            if(region.minBlocks != null) {
                 this.totalMinBlocks += region.minBlocks;
             }
 
-            if(region.minPercent != RegionDescription.UNSET) {
+            if(region.minPercent != null) {
                 this.totalMinPercent += region.minPercent;
             }
 
@@ -63,7 +63,7 @@ public class RegionSetValidator {
             }
 
             // Check validity of this region.
-            if(new RegionValidator(region, this.totalArea).isValid() == false) {
+            if(new RegionValidator(region, this.searchArea).isValid() == false) {
                 this.valid = false;
             }
         }
@@ -77,10 +77,14 @@ public class RegionSetValidator {
     }
 
     private void checkTotalMinBlocksLessThanTotalArea() {
-        if(this.totalMinBlocks > this.totalArea) {
+        if(this.searchArea == null) {
+            return;
+        }
+
+        if(this.totalMinBlocks > this.searchArea) {
             this.valid = false;
             Logger.error("The sum of the \"minBlocks\" variables for all regions must be less than or equal to the total area \""
-                    + this.totalArea + "m3\"");
+                    + this.searchArea + "m3\"");
         }
     }
 

@@ -14,7 +14,6 @@ public class SearchValidatorTest {
     public static final int LARGER = 1;
     public static final int MIN = SMALLER;
     public static final int MAX = LARGER;
-    public static final int REGION_UNSET = RegionDescription.UNSET;
     public static final int MIN_COORD = SearchValidator.MIN_COORD;
     public static final int MAX_COORD = SearchValidator.MAX_COORD;
 
@@ -74,7 +73,7 @@ public class SearchValidatorTest {
 
     public SearchValidatorTest() {
         final String[] validRegionList = { SearchValidatorTest.VALID_SPAWN_BIOME };
-        this.validRegion = new RegionDescription(validRegionList, REGION_UNSET, REGION_UNSET, REGION_UNSET, REGION_UNSET);
+        this.validRegion = new RegionDescription(validRegionList, null, null, null, null);
         final RegionDescription[] validRegions = { this.validRegion };
 
         this.nullSearch = null;

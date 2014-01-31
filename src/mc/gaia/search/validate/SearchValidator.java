@@ -35,6 +35,11 @@ public class SearchValidator {
         hasMinecraftVersion();
         hasValidSpawnRequest();
 
+        isCoordSet(this.searchDescription.minX, "minX");
+        isCoordSet(this.searchDescription.minY, "minY");
+        isCoordSet(this.searchDescription.maxX, "maxX");
+        isCoordSet(this.searchDescription.maxY, "maxY");
+
         // TODO: refactor this so it looks a bit cleaner
         minimumCoordCheck(this.searchDescription.minX, "X");
         minimumCoordCheck(this.searchDescription.minY, "Y");
@@ -77,7 +82,18 @@ public class SearchValidator {
         }
     }
 
-    private void greaterThanOther(final int greater, final int smaller, final String name) {
+    private void isCoordSet(final Integer coord, final String name) {
+        if(coord == null) {
+            this.valid = false;
+            Logger.error("Variable \"" + name + "\" must be set.");
+        }
+    }
+
+    private void greaterThanOther(final Integer greater, final Integer smaller, final String name) {
+        if(greater == null || smaller == null) {
+            return;
+        }
+
         if(smaller >= greater) {
             this.valid = false;
             Logger.error("Variable \"max" + name + "\" must be strictly greater than variable \"min" + name + "\".");
@@ -92,15 +108,15 @@ public class SearchValidator {
         greaterThanOther(this.searchDescription.maxY, this.searchDescription.minY, "Y");
     }
 
-    private void minimumCoordCheck(final int coord, final String name) {
-        if(coord < MIN_COORD) {
+    private void minimumCoordCheck(final Integer coord, final String name) {
+        if(coord != null && coord < MIN_COORD) {
             this.valid = false;
             Logger.error("Coordinate \"min" + name + "\" is less than the minimum allowed coordinate \"" + MIN_COORD + "\"");
         }
     }
 
-    private void maximumCoordCheck(final int coord, final String name) {
-        if(coord > MAX_COORD) {
+    private void maximumCoordCheck(final Integer coord, final String name) {
+        if(coord != null && coord > MAX_COORD) {
             this.valid = false;
             Logger.error("Coordinate \"max" + name + "\" is greater than the maximum allowed coordinate \"" + MAX_COORD + "\"");
         }
